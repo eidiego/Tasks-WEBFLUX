@@ -24,6 +24,12 @@ public class Task {
         return this;
     }
 
+    public Task insert(){
+        return builderFrom(this)
+                .withState(TaskState.INSERT)
+                .build();
+    }
+
     public String getTitle() {
         return title;
     }
