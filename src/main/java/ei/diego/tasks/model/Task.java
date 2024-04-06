@@ -1,9 +1,12 @@
 package ei.diego.tasks.model;
 
 import ei.diego.tasks.service.TaskService;
+import org.springframework.data.annotation.Id;
 
 public class Task {
 
+    @Id
+    private String id;
     private String title;
     private String description;
     private int priority;
@@ -19,10 +22,6 @@ public class Task {
         this.state = builder.state;
     }
 
-    public Task newTask(){
-        TaskService.taskList.add(this);
-        return this;
-    }
 
     public Task insert(){
         return builderFrom(this)
