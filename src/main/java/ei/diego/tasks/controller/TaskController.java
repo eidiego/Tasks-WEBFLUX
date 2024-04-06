@@ -4,7 +4,6 @@ import ei.diego.tasks.controller.converter.TaskDTOConverter;
 import ei.diego.tasks.controller.dto.TaskDTO;
 import ei.diego.tasks.model.Task;
 import ei.diego.tasks.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
