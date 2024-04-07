@@ -2,6 +2,7 @@ package ei.diego.tasks.controller.converter;
 
 import ei.diego.tasks.controller.dto.TaskDTO;
 import ei.diego.tasks.model.Task;
+import ei.diego.tasks.model.TaskState;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class TaskDTOConverter {
         return Optional.ofNullable(task)
                 .map(source -> {
                     TaskDTO dto = new TaskDTO();
+                    dto.setId(source.getId());
                     dto.setTitle(source.getTitle());
                     dto.setDescription(source.getDescription());
                     dto.setPriority(source.getPriority());
@@ -28,6 +30,7 @@ public class TaskDTOConverter {
     public Task convert(TaskDTO taskDTO) {
         return Optional.ofNullable(taskDTO)
                 .map(source -> Task.builder()
+                        .withId(source.getId())
                         .withTitle(source.getTitle())
                         .withDescription(source.getDescription())
                         .withPriority(source.getPriority())
@@ -35,6 +38,16 @@ public class TaskDTOConverter {
                         .build())
                 .orElse(null);
     }
+
+    public Task convert(String id, String title, String description, int priority, TaskState taskState){
+        return Task.builder()
+                .withId(id)
+                .withTitle(title)
+                .withPriority(priority)
+                .withState(taskState)
+                .build();
+    }
+
 
     public List<TaskDTO> convertList(List<Task> taskList) {
         return Optional.ofNullable(taskList)
