@@ -36,9 +36,15 @@ public class TaskController {
     }
 
     @PostMapping
-    public Mono<TaskDTO> createTask(@RequestBody Task task){
-        return service.insert(task)
+    public Mono<TaskDTO> createTask(@RequestBody TaskDTO taskDTO){
+        return service.insert(converter.convert(taskDTO))
                 .map(converter::convert);
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<Void> deleteTask(@PathVariable String id){
+        return Mono.just(id)
+                .flatMap(service::deleteById);
     }
 
 }
