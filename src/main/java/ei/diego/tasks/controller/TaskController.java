@@ -6,6 +6,7 @@ import ei.diego.tasks.model.Task;
 import ei.diego.tasks.model.TaskState;
 import ei.diego.tasks.service.TaskService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -42,6 +43,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteTask(@PathVariable String id){
         return Mono.just(id)
                 .flatMap(service::deleteById);
