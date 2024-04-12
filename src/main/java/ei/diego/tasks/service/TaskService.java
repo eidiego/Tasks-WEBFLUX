@@ -33,7 +33,7 @@ public class TaskService {
         return taskCustomRepository.findPaginated(task, pageNumber, pageSize);
     }
 
-    private Mono<Task> save(Task task) {
+    public Mono<Task> save(Task task) {
         return Mono.just(task)
                 .map(taskRepository::save);
     }
